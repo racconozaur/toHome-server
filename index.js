@@ -14,11 +14,11 @@ const path = require('path')
 
 const socketIo = require('socket.io')
 const server = http.createServer(app)
-const io = socketIo(server, {
-    cors: {
-        origin: [`http://localhost:3000`]
-    }
-})
+// const io = socketIo(server, {
+//     cors: {
+//         origin: [`http://localhost:3000`]
+//     }
+// })
 // const io = require('socket.io')(`http://localhost:${PORT}`)
 
 app.use(corsModdleware)
@@ -26,19 +26,19 @@ app.use(corsModdleware)
 app.use(express.json())
 app.use('/api/auth', authRouter)
 
-io.on("connection", (socket) => {
-    console.log(`User Connected: ${socket.id}`);
+// io.on("connection", (socket) => {
+//     console.log(`User Connected: ${socket.id}`);
   
-    socket.on("join_room", (data) => {
-      socket.join(data);
-    });
+//     socket.on("join_room", (data) => {
+//       socket.join(data);
+//     });
   
-    socket.on("send_message", (data) => {
-        console.log(data);
-        socket.to(data.room).emit("receive_message", data);
-    //   socket.to(data.room).emit("receive_message", data);
-    });
-  });
+//     socket.on("send_message", (data) => {
+//         console.log(data);
+//         socket.to(data.room).emit("receive_message", data);
+//     //   socket.to(data.room).emit("receive_message", data);
+//     });
+//   });
 
 const start = async () => {
     try {
