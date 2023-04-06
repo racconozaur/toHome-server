@@ -492,3 +492,4 @@ router.get(`/getcommentsfrom/:postId`, async (req, res) => {
 	}
 })
 
+module.exports = router
