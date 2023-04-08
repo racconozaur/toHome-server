@@ -4,25 +4,21 @@ const config = require('config')
 const http = require('http');
 const authRouter = require('./routes/auth.routes')
 const corsModdleware = require('./middleware/cors.middleware')
-const filePathMiddleware = require('./middleware/filePath.middleware')
+
 const { createServer } = require("http");
-const { Server } = require("socket.io");
 
 const app = express()
 const PORT = process.env.PORT || config.get('serverPort')
 
-const httpServer = createServer(app)
-
-
-const path = require('path')
 
 const socketIo = require('socket.io')
 const server = http.createServer(app)
-
+const io = socketIo(server, {
+    // cors: {
+    //     origin: [`http://localhost:3000`]
+    // }
+})
 // const io = require('socket.io')(`http://localhost:${PORT}`)
-
-const io = new Server(httpServer, { /* options */ });
-
 
 app.use(corsModdleware)
 
