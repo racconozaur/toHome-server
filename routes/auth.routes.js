@@ -308,7 +308,7 @@ router.delete(`/deletepost/:id`, async (req, res) => {
 router.patch(`/post/:id`, async (req, res) => {
 	try {
 		const post = await Recomendation.findOne({ _id: req.params.id })
-		const { title, status, type, rooms, square, location, price, content } =
+		const { title, status, type, rooms, square, price, content } =
 			req.body
 
 		post.title = title
@@ -317,7 +317,7 @@ router.patch(`/post/:id`, async (req, res) => {
 		post.type = type
 		post.rooms = rooms
 		post.square = square
-		post.location = location
+
 		post.price = price
 		post.moderated = false
 		post.validation = 'under review'
