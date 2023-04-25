@@ -19,8 +19,9 @@ router.post(
 			const { postId, comment, author } = req.body
 
 			const newComment = new Comment({ postId, comment, author })
-			await newComment.save()
-			res.json({ message: 'Message sent' })
+			newComment.save()
+				.then(() => res.json({ message: 'Message sent', newComment: newComment }))
+				.catch((err) => console.log(err))
 		} catch (e) {
 			console.log(e)
 			res.send({ message: 'Server error' })
